@@ -1,0 +1,14 @@
+# Infrastructure files
+.env
+
+# Data
+data/
+mods/
+*.log
+*.tar.gz
+
+# Mods
+server_mods/
+
+# PowerShell
+*.ps1

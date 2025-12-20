@@ -1,0 +1,60 @@
+services:
+  mc:
+    image: itzg/minecraft-server:latest
+    container_name: ${MC_CONTAINER_NAME}
+    environment:
+      # --- Java & JVM Settings ---
+      MEMORY: "${MC_MEMORY}"
+      JVM_OPTS: "${MC_JVM_OPTS}"
+
+      # --- Minecraft Server Version ---
+      EULA: "TRUE"
+      VERSION: "${MC_VERSION}"
+      NEOFORGE_VERSION: "${MC_NEOFORGE_VERSION}"
+      MOD_TYPE: "${MC_MOD_TYPE}"
+      TYPE: "${MC_TYPE}"
+      ONLINE_MODE: "${MC_ONLINE_MODE}"
+
+      # --- RCON Management ---
+      ENABLE_RCON: "true"
+      RCON_PASSWORD: "${MC_RCON_PASSWORD}"
+      RCON_PORT: 25575
+
+      # --- Auto-Pause Settings ---
+      ENABLE_AUTOPAUSE: "true"
+      AUTOPAUSE_TIMEOUT_EST: "${MC_AUTOPAUSE_TIMEOUT_EST:-600}"
+      AUTOPAUSE_TIMEOUT_KN: "${MC_AUTOPAUSE_TIMEOUT_KN:-120}"
+
+      # --- Game Settings (World & Rules) ---
+      DIFFICULTY: "${MC_DIFFICULTY:-HARD}"
+      VIEW_DISTANCE: "${MC_VIEW_DISTANCE:-10}"
+      SIMULATION_DISTANCE: "${MC_SIMULATION_DISTANCE:-8}"
+      SPAWN_PROTECTION: "${MC_SPAWN_PROTECTION:-0}"
+      ALLOW_FLIGHT: "${MC_ALLOW_FLIGHT:-true}"
+      PLAYER_IDLE_TIMEOUT: "${MC_PLAYER_IDLE_TIMEOUT:-0}"
+      GAMERULE_PLAYERS_SLEEPING_PERCENTAGE: "${MC_GAMERULE_PLAYERS_SLEEPING_PERCENTAGE:-1}"
+      GAMERULE_DO_FIRE_TICK: "${MC_GAMERULE_DO_FIRE_TICK:-false}"
+
+      # --- Advanced & Performance ---
+      MAX_TICK_TIME: "${MC_MAX_TICK_TIME:-60000}"
+      SYNC_CHUNK_WRITES: "${MC_SYNC_CHUNK_WRITES:-false}"
+
+      # --- Mod Management ---
+      IGNORE_MOD_FILE_EXTENSIONS: ".jar.disabled"
+      CREATE_CONSOLE_IN_PIPE: "true"
+    ports:
+      - "${MC_SERVER_PORT}:25565"
+      - "${MC_SERVER_PORT}:25565/udp"
+    volumes:
+      - ./data:/data
+      - ./data/mods:/data/mods:ro
+    deploy:
+          resources:
+            limits:
+              memory: "${MC_MAX_MEMORY:-6G}"
+    healthcheck:
+          test: ["CMD", "mc-health"]
+          interval: 1m
+          timeout: 5s
+          retries: 3
+    restart: unless-stopped

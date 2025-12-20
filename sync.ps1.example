@@ -1,0 +1,29 @@
+# sync.ps1.example
+# Configuration
+$SERVER_IP = "YOUR_SERVER_IP"
+$REMOTE_USER = "root"
+$REMOTE_PATH = "/srv/minecraft-server/mc-infrastructure/data/mods/"
+$LOCAL_MODS_PATH = "./server_mods/*.jar"
+
+# Validation
+if ($SERVER_IP -eq "YOUR_SERVER_IP") {
+    Write-Error "Please configure the SERVER_IP in the script first."
+    exit 1
+}
+
+Write-Host "Starting mods synchronization to $SERVER_IP..." -ForegroundColor Cyan
+
+# Ensure scp is available
+if (-not (Get-Command scp -ErrorAction SilentlyContinue)) {
+    Write-Error "SCP command not found. Please install OpenSSH Client."
+    exit 1
+}
+
+# Execute copy
+scp -P 22 $LOCAL_MODS_PATH ${REMOTE_USER}@${SERVER_IP}:${REMOTE_PATH}
+
+if ($LASTEXITCODE -eq 0) {
+    Write-Host "Success! Now run 'make rebuild' on the server." -ForegroundColor Green
+} else {
+    Write-Host "Error during transfer." -ForegroundColor Red
+}
