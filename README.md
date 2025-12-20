@@ -1,14 +1,15 @@
 # Minecraft Server Infrastructure
 
-A robust, Docker-based Minecraft server setup using NeoForge. This project is designed to be easy to configure, secure, and performant out of the box.
+A robust, Docker-based Minecraft server setup. This project is designed to be easy to configure, secure, and performant out of the box.
 
 ## Features
 
 - **Dockerized**: Runs in an isolated container using the industry-standard `itzg/minecraft-server` image.
-- **NeoForge Ready**: Pre-configured for modern modded Minecraft.
-- **Configuration as Code**: All gameplay and infrastructure settings are managed via a single `.env` file.
-- **Optimized**: Includes tuned JVM flags (ZGC) for low-latency garbage collection.
-- **Management Tools**: Includes a `Makefile` for easy console access and lifecycle management.
+- **Multi-Loader Support**: Ready for Vanilla, NeoForge, Fabric, or Paper.
+
+* **Configuration as Code**: All gameplay and infrastructure settings are managed via a single `.env` file.
+* **Optimized**: Includes tuned JVM flags (ZGC) for low-latency garbage collection.
+* **Management Tools**: Includes a `Makefile` for easy console access and lifecycle management.
 
 ## Prerequisites
 

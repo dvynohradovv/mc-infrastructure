@@ -10,8 +10,8 @@ services:
       # --- Minecraft Server Version ---
       EULA: "TRUE"
       VERSION: "${MC_VERSION}"
-      NEOFORGE_VERSION: "${MC_NEOFORGE_VERSION}"
-      MOD_TYPE: "${MC_MOD_TYPE}"
+      NEOFORGE_VERSION: "${MC_NEOFORGE_VERSION:-}"
+      MOD_TYPE: "${MC_MOD_TYPE:-}"
       TYPE: "${MC_TYPE}"
       ONLINE_MODE: "${MC_ONLINE_MODE}"
 
