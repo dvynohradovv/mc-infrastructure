@@ -21,7 +21,7 @@ services:
       RCON_PORT: 25575
 
       # --- Auto-Pause Settings ---
-      ENABLE_AUTOPAUSE: "true"
+      ENABLE_AUTOPAUSE: "${MC_ENABLE_AUTOPAUSE:-true}"
       AUTOPAUSE_TIMEOUT_EST: "${MC_AUTOPAUSE_TIMEOUT_EST:-600}"
       AUTOPAUSE_TIMEOUT_KN: "${MC_AUTOPAUSE_TIMEOUT_KN:-120}"
 
