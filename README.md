@@ -1,6 +1,12 @@
-# Minecraft Server Infrastructure
+# Minecraft Server Infrastructure | Oracle Cloud
+
+<img width="950" height="247" alt="image" src="https://github.com/user-attachments/assets/820aed1f-2ae0-4c79-bf64-a2907d741703" />
 
 A robust, Docker-based Minecraft server setup. This project is designed to be easy to configure, secure, and performant out of the box.
+Hosted on Oracle Cloud using ARM architecture.
+
+<img width="474" height="292" alt="image" src="https://github.com/user-attachments/assets/89745642-f241-4e80-8d8d-bfee757b7a8f" />
+
 
 ## Features
 
