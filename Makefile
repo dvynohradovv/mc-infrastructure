@@ -1,4 +1,3 @@
-CONTAINER_NAME = mc-neo-forge-server
 DC = docker compose
 
 # Server management commands
@@ -20,13 +19,13 @@ clean:
 
 # Minecraft server commands
 console:
-	docker exec -i $(CONTAINER_NAME) rcon-cli
+	$(DC) exec -i mc rcon-cli
 
 wh-add:
-	docker exec -i $(CONTAINER_NAME) rcon-cli whitelist add $(name)
+	$(DC) exec -i mc rcon-cli whitelist add $(name)
 
 wh-remove:
-	docker exec -i $(CONTAINER_NAME) rcon-cli whitelist remove $(name)
+	$(DC) exec -i mc rcon-cli whitelist remove $(name)
 
 wh-list:
-	docker exec -i $(CONTAINER_NAME) rcon-cli whitelist list
+	$(DC) exec -i mc rcon-cli whitelist list
