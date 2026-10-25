@@ -3,6 +3,7 @@
 
 # Data
 data/
+data-*/
 mods/
 *.log
 *.tar.gz

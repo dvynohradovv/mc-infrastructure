@@ -20,5 +20,5 @@ services:
       RCON_PASSWORD: "${MC_RCON_PASSWORD:-rlcraft_secret}"
       RCON_PORT: 25575
     volumes:
-      - ./data:/data
+      - ./data-rlcraft:/data
     restart: unless-stopped
