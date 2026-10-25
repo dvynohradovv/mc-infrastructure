@@ -1,24 +1,27 @@
 services:
   mc:
-    image: itzg/minecraft-server:java8
-    container_name: ${MC_CONTAINER_NAME:-rlcraft-server}
+    image: itzg/minecraft-server:latest
+    container_name: ${MC_CONTAINER_NAME:-mmc3-server}
     tty: true
     stdin_open: true
     ports:
       - "${MC_SERVER_PORT:-25565}:25565"
     environment:
       EULA: "TRUE"
-      TYPE: "FORGE"
-      VERSION: "1.12.2"
-      FORGE_VERSION: "14.23.5.2860"
+      TYPE: "FABRIC"
+      VERSION: "1.21.1"
+      FABRIC_LOADER_VERSION: "${MC_FABRIC_LOADER_VERSION:-}"
       MEMORY: "${MC_MEMORY:-8G}"
-      JVM_OPTS: "${MC_JVM_OPTS:--XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1}"
+      JVM_OPTS: "${MC_JVM_OPTS:--XX:+UseZGC -XX:+ZGenerational -XX:+UnlockExperimentalVMOptions -XX:+AlwaysPreTouch -XX:+DisableExplicitGC}"
       ONLINE_MODE: "${MC_ONLINE_MODE:-false}"
       PVP: "false"
       MAX_TICK_TIME: "-1"
+      IGNORE_MOD_FILE_EXTENSIONS: ".jar.disabled"
+      GAMERULE_KEEP_INVENTORY: "true"
+      GAMERULE_PLAYERS_SLEEPING_PERCENTAGE: "1"
       ENABLE_RCON: "true"
-      RCON_PASSWORD: "${MC_RCON_PASSWORD:-rlcraft_secret}"
+      RCON_PASSWORD: "${MC_RCON_PASSWORD:-mmc3_secret}"
       RCON_PORT: 25575
     volumes:
-      - ./data-rlcraft:/data
+      - ./data-mmc3:/data
     restart: unless-stopped
