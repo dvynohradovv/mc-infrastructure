@@ -12,7 +12,7 @@ services:
       VERSION: "1.21.1"
       FABRIC_LOADER_VERSION: "${MC_FABRIC_LOADER_VERSION:-}"
       INIT_MEMORY: "2G"
-      MEMORY: "${MC_MEMORY:-6G}"
+      MEMORY: "${MC_MEMORY:-8G}"
       JVM_OPTS: "${MC_JVM_OPTS:--XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC}"
       ONLINE_MODE: "${MC_ONLINE_MODE:-false}"
       PVP: "false"
