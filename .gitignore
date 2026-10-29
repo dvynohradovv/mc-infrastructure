@@ -1,8 +1,14 @@
 # Infrastructure files
 .env
+.env.*
+!.env.example
+!.env.macbook
+!.env.server
+.DS_Store
 
 # Data
 data/
+data-*/
 mods/
 *.log
 *.tar.gz
